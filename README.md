@@ -1,3 +1,5 @@
 # MA615_Unit_1
 
-Chapter 2 Exercises
+#Chapter 3 Exercises
+
+library(tidyverse)
