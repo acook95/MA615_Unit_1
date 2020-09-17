@@ -90,7 +90,15 @@ for (i in 1:N){
   
 }
 
-MR2 <- filter(MR, hh==12,DD==01)
+MR2 <- filter(MR, DD==11, hh==12)
+
+MR3 <- select(MR2, YYYY, MM, ATMP)
+
+MR4 <- transform(MR3, YYYY= as.numeric(YYYY), MM= as.numeric(MM), ATMP= as.numeric(ATMP))
+
+MR5 <- mutate(MR4, DATE = YYYY + MM - 2000)
+
+ggplot(data=MR5, aes(DATE, ATMP)) + geom_point()
 
 #MR4 <- select(MR3, YYYY, MM, DD, ATMP)
 # hi this is jenna
