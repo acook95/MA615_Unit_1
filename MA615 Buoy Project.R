@@ -90,16 +90,20 @@ for (i in 1:N){
   
 }
 
-MR2 <- filter(MR, DD==11, hh==12)
+MR2 <- filter(MR, DD==11, hh==12, ATMP<500)
 
 MR3 <- select(MR2, YYYY, MM, ATMP)
 
 MR4 <- transform(MR3, YYYY= as.numeric(YYYY), MM= as.numeric(MM), ATMP= as.numeric(ATMP))
 
-MR5 <- mutate(MR4, DATE = YYYY + MM - 2000)
+MR5 <- unite(MR4, DATE, YYYY, MM, sep = "-")
+MR6 <- mutate(MR5, MONTH = 0:211)
 
-ggplot(data=MR5, aes(DATE, ATMP)) + geom_point()
+ggplot(data=MR6, aes(MONTH, ATMP)) + geom_point()
 
-#MR4 <- select(MR3, YYYY, MM, DD, ATMP)
+fit <- stan_glm(ATMP ~ MONTH, data = MR6, refresh=0)
+fit
+
+
 # hi this is jenna
 #And Bruce
