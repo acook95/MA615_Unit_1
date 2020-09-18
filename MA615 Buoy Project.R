@@ -96,13 +96,20 @@ MR3 <- select(MR2, YYYY, MM, ATMP)
 
 MR4 <- transform(MR3, YYYY= as.numeric(YYYY), MM= as.numeric(MM), ATMP= as.numeric(ATMP))
 
-MR5 <- unite(MR4, DATE, YYYY, MM, sep = "-")
-MR6 <- mutate(MR5, MONTH = 0:211)
+#MR5 <- unite(MR4, DATE, YYYY, MM, sep = "-")
+MR5 <- mutate(MR4, DATE = 12 * (YYYY-2000) + MM)
 
-ggplot(data=MR6, aes(MONTH, ATMP)) + geom_point()
+ggplot(data=MR5, aes(DATE, ATMP)) + geom_point()
 
-fit <- stan_glm(ATMP ~ MONTH, data = MR6, refresh=0)
+fit <- stan_glm(ATMP ~ DATE, data = MR5, refresh=0)
 fit
+
+MR7 <- filter(MR, MM==11, DD==11, hh==12, ATMP<500)
+MR8 <- transform(MR7, YYYY= as.numeric(YYYY), ATMP= as.numeric(ATMP))
+
+ggplot(data=MR8, aes(YYYY,ATMP)) + geom_point()
+fit2 <- stan_glm(ATMP ~ YYYY, data=MR8, refresh=0)
+fit2
 
 
 # hi this is jenna
