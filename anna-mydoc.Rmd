@@ -1,0 +1,17 @@
+---
+title: "William Sealy Gosset"
+author: "MA615"
+date: "9/21/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## How a student of Guinness became ‘the Faraday of statistics’
+
+<p style="font-size:18px">
+Gosset was born in Canterbury in 1876, into an old Huguenot family. He studied chemistry and mathematics in Oxford, graduating in 1899, with first-class honours in both subjects. He then joined Guinness in Dublin as a chemist, and worked at the brewery on James’s Street for 36 years, before becoming head brewer at a new Guinness brewery at Park Royal in London.
